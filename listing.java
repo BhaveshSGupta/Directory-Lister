@@ -38,13 +38,9 @@ public class listing {
     }
     public static void displayDirectoryContents(File dir) throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter out = new PrintWriter("abc.md", "UTF-8");
-//try {
         File[] files = dir.listFiles();
         for (File file : files) {
             if (file.isDirectory()) {
-//System.out.println("directory:"+ file.getCanonicalPath());
-//file.
-// out.println("directory:"+file.getName() +file.getAbsolutePath());
                 out.println("##" + file.getName());
                 out.println("|File|Size|Modified Date|");
                 out.println("| :------------- | :------------- |:------------- |");
@@ -52,13 +48,8 @@ public class listing {
             } else {
                 Date lastMod = new Date(file.lastModified());
                 out.println("|" + file.getName() + "|" + file.length() / 1024 + "KB|" + lastMod + "|");
-//System.out.println("file:"+ file.getCanonicalPath());
             }
         }
-//catch (IOException e) {
-//e.printStackTrace();
-//  PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-// }
         out.close();
     }
 }
