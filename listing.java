@@ -26,49 +26,39 @@
  *
  * @author Bhavesh
  */
- import java.io.File;
- import java.io.FileNotFoundException;
- import java.io.PrintWriter;
- import java.io.UnsupportedEncodingException;
- import java.util.Date;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
 public class listing {
-
-    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException  {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         File currentDir = new File("."); // current directory
         displayDirectoryContents(currentDir);
     }
-
-    public static void displayDirectoryContents(File dir) throws FileNotFoundException, UnsupportedEncodingException  {
-			PrintWriter out = new PrintWriter("abc.md", "UTF-8");
-//        try {
-            File[] files = dir.listFiles();
-            for (File file : files) {
-                if (file.isDirectory()) {
-//                    System.out.println("directory:"+ file.getCanonicalPath());
-                    //file.
-                    // out.println("directory:"+file.getName() +file.getAbsolutePath());
-										out.println("##"+file.getName());
-										out.println("|File|Size|Modified Date|");
-										out.println("| :------------- | :------------- |:------------- |");
-
-
-                    displayDirectoryContents(file);
-                } else {
-									Date lastMod = new Date(file.lastModified());
-
-                    out.println("|"+file.getName()+"|"+file.length()/1024+"KB|"+lastMod+"|");
-
-//                    System.out.println("file:"+ file.getCanonicalPath());
-                }
+    public static void displayDirectoryContents(File dir) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter out = new PrintWriter("abc.md", "UTF-8");
+//try {
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            if (file.isDirectory()) {
+//System.out.println("directory:"+ file.getCanonicalPath());
+//file.
+// out.println("directory:"+file.getName() +file.getAbsolutePath());
+                out.println("##" + file.getName());
+                out.println("|File|Size|Modified Date|");
+                out.println("| :------------- | :------------- |:------------- |");
+                displayDirectoryContents(file);
+            } else {
+                Date lastMod = new Date(file.lastModified());
+                out.println("|" + file.getName() + "|" + file.length() / 1024 + "KB|" + lastMod + "|");
+//System.out.println("file:"+ file.getCanonicalPath());
             }
-
-//        catch (IOException e) {
-//            e.printStackTrace();
+        }
+//catch (IOException e) {
+//e.printStackTrace();
 //  PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-      // }
-			out.close();
-
-		}
+// }
+        out.close();
+    }
 }
-//}
